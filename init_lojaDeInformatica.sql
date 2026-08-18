@@ -40,7 +40,6 @@ INSERT INTO produto (tipo, modelo, marca, preco, estoque, especificacoes) VALUES
 ('Processador', 'Ryzen 5 5600', 'AMD', 799.90, 10, '6 núcleos, 12 threads, 3.5GHz'),
 ('Placa de Video', 'RTX 4060', 'NVIDIA', 1899.90, 5, '8GB GDDR6, PCIe 4.0');
 
--- Inserindo Pedidos
 INSERT INTO pedido (id_cliente, id_produto, data_pedido, quantidade) VALUES
 (1, 1, '2026-03-05', 1),
 (1, 2, '2026-03-05', 2),
