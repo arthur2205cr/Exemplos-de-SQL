@@ -42,32 +42,51 @@ CREATE TABLE movimentacao_estoque (
     FOREIGN KEY (id_filial) REFERENCES filial(id) ON DELETE CASCADE
 );
 
-INSERT INTO cliente (nome, email, data_cadastro) VALUES
-('Arthur Castro', 25, 'arthur@email.com', '2026-01-15'),
-('Mariana Silva', 31, 'mariana@email.com', '2026-02-03'),
-('Joao Oliveira', 42, 'joao@email.com', '2026-02-18'),
-('Beatriz Santos', 27, 'beatriz@email.com', '2026-03-10'),
-('Carlos Mendes', 36, 'carlos@email.com', '2026-03-22');
+INSERT INTO produto (nome, marca, tipo, descricao, valor, data_cadastro) VALUES
+('Mouse Gamer G305', 'Logitech', 'Periferico', 'Mouse sem fio para jogos', 249.90, '2026-01-10'),
+('Teclado Mecânico K552', 'Redragon', 'Periferico', 'Teclado mecanico RGB ABNT2', 249.90, '2026-01-12'),
+('Monitor 24 Polegadas', 'AOC', 'Monitor', 'Monitor Full HD 144Hz', 1099.90, '2026-01-15'),
+('SSD NV2 1TB', 'Kingston', 'Armazenamento', 'SSD NVMe M.2 de 1TB', 449.90, '2026-01-20'),
+('Memoria RAM 16GB', 'Kingston', 'Memoria', 'Memoria DDR4 3200MHz', 329.90, '2026-02-02'),
+('Processador Ryzen 5 5600', 'AMD', 'Processador', 'Processador 6 nucleos e 12 threads', 799.90, '2026-02-10'),
+('Placa Mae B550M', 'Gigabyte', 'Placa Mae', 'Placa mae AM4 com suporte DDR4', 699.90, '2026-02-15'),
+('Fonte 650W', 'Corsair', 'Fonte', 'Fonte 650W com certificacao 80 Plus Bronze', 399.90, '2026-02-20');
 
-INSERT INTO destino (cidade, estado, pais, continente, local_saida) VALUES
-('Paris', NULL, 'Franca', 'Europa', 'Belo Horizonte'),
-('Buenos Aires', NULL, 'Argentina', 'America do Sul', 'Sao Paulo'),
-('Roma', NULL, 'Italia', 'Europa', 'Rio de Janeiro'),
-('Cancun', 'Quintana Roo', 'Mexico', 'America do Norte', 'Belo Horizonte'),
-('Lisboa', NULL, 'Portugal', 'Europa', 'Sao Paulo');
+INSERT INTO filial (nome, cidade, estado, endereco) VALUES
+('Filial Belo Horizonte', 'Belo Horizonte', 'MG', 'Av. Afonso Pena, 1000'),
+('Filial Sao Paulo', 'Sao Paulo', 'SP', 'Av. Paulista, 1500'),
+('Filial Rio de Janeiro', 'Rio de Janeiro', 'RJ', 'Av. Rio Branco, 800'),
+('Filial Curitiba', 'Curitiba', 'PR', 'Rua XV de Novembro, 500');
 
-INSERT INTO pacote_viagem (nome, id_destino, valor, data_ida, data_volta, duracao) VALUES
-('Paris Economico', 1, 4500.00, '2026-09-10', '2026-09-17', 7),
-('Buenos Aires Gastronomico', 2, 2800.00, '2026-10-05', '2026-10-10', 5),
-('Roma Historica', 3, 5200.00, '2026-11-12', '2026-11-20', 8),
-('Cancun All Inclusive', 4, 6800.00, '2026-12-01', '2026-12-08', 7),
-('Lisboa Cultural', 5, 3900.00, '2027-01-15', '2027-01-22', 7);
+INSERT INTO estoque 
+(id_produto, id_filial, quantidade) VALUES
+(1, 1, 25),
+(1, 2, 18),
+(1, 3, 10),
+(2, 1, 15),
+(2, 2, 22),
+(2, 4, 8);
 
-INSERT INTO compra (id_cliente, id_pacote_viagem, quantidade_pessoas) VALUES
-(1, 1, 2),
-(2, 3, 1),
-(3, 2, 4),
-(4, 5, 2),
-(5, 4, 3),
-(1, 5, 1),
-(2, 1, 2);
+INSERT INTO movimentacao_estoque (id_produto, id_filial, tipo_movimentacao, quantidade, data_movimentacao, observacao) VALUES
+(1, 1, 'Entrada', 10, '2026-03-01', 'Reposicao de estoque'),
+(1, 1, 'Saida', 3, '2026-03-05', 'Venda realizada'),
+(1, 2, 'Entrada', 15, '2026-03-02', 'Recebimento de fornecedor'),
+(1, 2, 'Saida', 4, '2026-03-08', 'Venda realizada'),
+(2, 1, 'Entrada', 20, '2026-03-03', 'Reposicao de estoque'),
+(2, 1, 'Saida', 5, '2026-03-09', 'Venda realizada'),
+(2, 2, 'Entrada', 15, '2026-03-04', 'Recebimento de fornecedor'),
+(2, 2, 'Saida', 3, '2026-03-10', 'Venda realizada'),
+(3, 1, 'Entrada', 8, '2026-03-05', 'Reposicao de estoque'),
+(3, 1, 'Saida', 2, '2026-03-12', 'Venda realizada'),
+(3, 2, 'Entrada', 10, '2026-03-06', 'Recebimento de fornecedor'),
+(4, 1, 'Entrada', 12, '2026-03-07', 'Reposicao de estoque'),
+(4, 1, 'Saida', 4, '2026-03-15', 'Venda realizada'),
+(5, 1, 'Entrada', 20, '2026-03-08', 'Recebimento de fornecedor'),
+(5, 1, 'Saida', 6, '2026-03-18', 'Venda realizada'),
+(6, 2, 'Entrada', 8, '2026-03-09', 'Reposicao de estoque'),
+(6, 2, 'Saida', 2, '2026-03-20', 'Venda realizada'),
+(7, 1, 'Entrada', 6, '2026-03-10', 'Recebimento de fornecedor'),
+(7, 1, 'Saida', 1, '2026-03-22', 'Venda realizada'),
+(8, 1, 'Entrada', 10, '2026-03-11', 'Reposicao de estoque'),
+(8, 2, 'Entrada', 15, '2026-03-12', 'Recebimento de fornecedor'),
+(8, 2, 'Saida', 5, '2026-03-25', 'Venda realizada');
