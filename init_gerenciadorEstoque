@@ -3,14 +3,25 @@ CREATE DATABASE gerenciador_estoque_db;
 USE gerenciador_estoque_db;
 
 
+CREATE TABLE fornecedor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    cnpj VARCHAR(18) NOT NULL UNIQUE,
+    telefone VARCHAR(20),
+    email VARCHAR(150),
+    endereco VARCHAR(255)
+);
+
 CREATE TABLE produto (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    id_fornecedor INT NOT NULL,
     nome VARCHAR(100) NOT NULL,
     marca VARCHAR(100) NOT NULL,
     tipo VARCHAR(100) NOT NULL,
     descricao VARCHAR(100) NOT NULL,
     valor DECIMAL(10, 2) NOT NULL,
-    data_cadastro DATE NOT NULL
+    data_recebimento DATE NOT NULL,
+    Foreign Key (id_fornecedor) REFERENCES fornecedor(id) ON DELETE CASCADE
 );
 
 CREATE TABLE filial (
@@ -74,4 +85,4 @@ INSERT INTO movimentacao_estoque (id_produto, id_filial, tipo_movimentacao, quan
 (1, 2, 'Saida', 4, '2026-03-08', 'Venda realizada'),
 (2, 1, 'Entrada', 20, '2026-03-03', 'Reposicao de estoque'),
 (2, 1, 'Saida', 5, '2026-03-09', 'Venda realizada'),
-(2, 2, 'Entrada', 15, '2026-03-04', 'Recebimento de fornecedor'),
+(2, 2, 'Entrada', 15, '2026-03-04', 'Recebimento de fornecedor');
