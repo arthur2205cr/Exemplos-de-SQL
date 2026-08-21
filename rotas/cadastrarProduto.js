@@ -8,7 +8,7 @@ export default function cadastrarProduto(req, res) {
 
     const query = 'INSERT INTO produto (nome, marca, tipo, descricao, valor, data_recebimento) VALUES (?, ?, ?, ?, ?, ?)';
 
-    bd.query(query [nome, marca, tipo, descricao, valor, data_recebimento], (erro, resultado) => {
+    bd.query(query, [nome, marca, tipo, descricao, valor, data_recebimento], (erro, resultado) => {
         if (erro)
             return res.status(500).json({ msg_erro: erro.message });
 
